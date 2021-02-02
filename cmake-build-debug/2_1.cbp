@@ -76,6 +76,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="E:/C/2_1/c_json.h">
+			<Option target="2_1"/>
+		</Unit>
 		<Unit filename="E:/C/2_1/main.c">
 			<Option target="2_1"/>
 		</Unit>
