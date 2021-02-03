@@ -38,34 +38,26 @@
 #define cJSON_Object 6; // 对象
 
 // 功能：创建一个string值为name的cJSON_False节点，并添加到object节点
-#define cJSON_AddFalseToObject(object, name) \
-    cJSON_AddItemToObject(object, name, cJSON_CreateFalse())
+#define cJSON_AddFalseToObject(object, name) cJSON_AddItemToObject(object, name, cJSON_CreateFalse())
 
 // 功能：创建一个string值为name的cJSON_True节点，并添加到object节点
-#define cJSON_AddTrueToObject(object, name) \
-    cJSON_AddItemToObject(object, name, cJSON_CreateTrue())
+#define cJSON_AddTrueToObject(object, name) cJSON_AddItemToObject(object, name, cJSON_CreateTrue())
 
 // 功能：创建一个string值为name的cJSON_Bool/False节点，并添加到object节点
-#define cJSON_AddFalseToObject(object, name, b) \
-    cJSON_AddItemToObject(object, name, cJSON_CreateBool(b))
+#define cJSON_AddBoolToObject(object, name, b) cJSON_AddItemToObject(object, name, cJSON_CreateBool(b))
 
 // 功能：创建一个string值为name的cJSON_Null节点，并添加到object节点
-#define cJSON_AddNULLToObject(object, name) \
-    cJSON_AddItemToObject(object, name, cJSON_CreateNull())
+#define cJSON_AddNULLToObject(object, name) cJSON_AddItemToObject(object, name, cJSON_CreateNull())
 
 // 功能：创建一个string值为name的cJSON_False节点，并添加到object节点
-#define cJSON_AddNumberToObject(object, name, number) \
-    cJSON_AddItemToObject(object, name, cJSON_CreateNumber(number))
+#define cJSON_AddNumberToObject(object, name, number) cJSON_AddItemToObject(object, name, cJSON_CreateNumber(number))
 
 // 功能：创建一个string值为name的cJSON_String节点，并添加到object节点
-#define cJSON_AddStringToObject(object, name, s) \
-    cJSON_AddItemToObject(object, name, cJSON_CreateString(s))
+#define cJSON_AddStringToObject(object, name, s) cJSON_AddItemToObject(object, name, cJSON_CreateString(s))
 
-#define cJSON_SetIntValue(object, val) \
-    ((object) ? ((object) -> valueInt = (object) -> valueDouble = (val)):(val))
+#define cJSON_SetIntValue(object, val) ((object) ? ((object) -> valueInt = (object) -> valueDouble = (val)):(val))
 
-#define cJSON_SetNumberValue(object, val) \
-    ((object) ? ((object) -> valueInt = (object) -> valueDouble = (val)):(val))
+#define cJSON_SetNumberValue(object, val) ((object) ? ((object) -> valueInt = (object) -> valueDouble = (val)):(val))
 
 
 typedef struct cJSON
@@ -209,7 +201,7 @@ cJSON * cJSON_CreateNull();
 返回值
     void
 */
-void cJSON_AddItemToObject(cJSON * object, char * string, cJSON * item);
+void cJSON_AddItemToObject(cJSON * object, const char * string, cJSON * item);
 
 /*
 函数功能
@@ -227,6 +219,7 @@ cJSON * cJSON_ParseWithOpts(const char * value, const char ** return_parse_end, 
 cJSON * cJSON_New_Item();
 
 const char * skip(const char * in);
+char * cJSON_GetEndPosition();
 
 const char * parse_value(cJSON * item, const char * value);
 
@@ -236,13 +229,24 @@ const char *parse_Array(cJSON * item, const char * value);
 const char *parse_Object(cJSON * item, const char * value);
 
 char * cJSON_strdup(const char * str);
-
 char * print_number(cJSON * item);
-char * print_string(cJSON * item);
+char * print_string(cJSON * item, int isName);
 char * print_array(cJSON * item, int depth, int fmt);
-char * print_object(cJSON * item);
-
+char * print_object(cJSON * item, int depth, int fmt);
 char * print_value(cJSON * item, int depth, int fmt);
+
+cJSON * cJSON_DetachItemFromArray(cJSON * array, int which);
+void cJSON_DeleteItemFromArray(cJSON * array, int which);
+
+int cJSON_strcasecmp(const char * s1, const char * s2);
+
+cJSON * cJSON_DetachItemFromObject(cJSON * object, const char * string);
+void cJSON_DeleteItemFromObject(cJSON * object, int which);
+
+void cJSON_InsertItemInArray(cJSON * array, int which, cJSON * newItem);
+
+void cJSON_ReplaceItemInArray(cJSON * array, int which, cJSON * newItem);
+void cJSON_ReplaceItemInObject(cJSON * object, const char * string, cJSON * newItem);
 
 #endif //INC_2_1_C_JSON_H
 

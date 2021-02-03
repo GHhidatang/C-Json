@@ -122,6 +122,33 @@ depend:
 	$(MAKE) -f CMakeFiles\2_1.dir\build.make CMakeFiles/2_1.dir/build
 .PHONY : 2_1/fast
 
+c_json.obj: c_json.c.obj
+
+.PHONY : c_json.obj
+
+# target to build an object file
+c_json.c.obj:
+	$(MAKE) -f CMakeFiles\2_1.dir\build.make CMakeFiles/2_1.dir/c_json.c.obj
+.PHONY : c_json.c.obj
+
+c_json.i: c_json.c.i
+
+.PHONY : c_json.i
+
+# target to preprocess a source file
+c_json.c.i:
+	$(MAKE) -f CMakeFiles\2_1.dir\build.make CMakeFiles/2_1.dir/c_json.c.i
+.PHONY : c_json.c.i
+
+c_json.s: c_json.c.s
+
+.PHONY : c_json.s
+
+# target to generate assembly for a file
+c_json.c.s:
+	$(MAKE) -f CMakeFiles\2_1.dir\build.make CMakeFiles/2_1.dir/c_json.c.s
+.PHONY : c_json.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -158,6 +185,9 @@ help:
 	@echo ... rebuild_cache
 	@echo ... 2_1
 	@echo ... edit_cache
+	@echo ... c_json.obj
+	@echo ... c_json.i
+	@echo ... c_json.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
